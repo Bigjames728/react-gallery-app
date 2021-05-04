@@ -25,7 +25,6 @@ export default class App extends Component {
           images: response.photos.photo,
           loading: false
         })
-        console.log(response.photos.photo)
       })
       .catch(error => {
         console.log('Error fetching and parsing data', error);
