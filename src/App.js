@@ -1,10 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
+import SearchForm from './components/SearchForm';
 
 function App() {
   return (
     <div>
-      <header className="App-header">
+      <header>
+      <SearchForm />
         
         
       </header>
