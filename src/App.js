@@ -2,6 +2,7 @@ import React from 'react';
 import './index.css';
 import SearchForm from './components/SearchForm';
 import MainNav from './components/MainNav';
+import Results from './components/Results';
 
 function App() {
   return (
@@ -9,7 +10,7 @@ function App() {
       
       <SearchForm />
       <MainNav />
-        
+      <Results />
         
       
     </div>
