@@ -5,6 +5,7 @@ import axios from 'axios';
 import SearchForm from './components/SearchForm';
 import MainNav from './components/MainNav';
 import Results from './components/Results';
+import ImageList from './components/ImageList';
 
 export default class App extends Component {
 
@@ -30,7 +31,7 @@ export default class App extends Component {
       });
   }
 
-  
+
   render() {
     console.log(this.state.images)
     return (
@@ -39,6 +40,7 @@ export default class App extends Component {
         <SearchForm onSearch={this.searchImages} />
         <MainNav />
         <Results />
+        <ImageList />
           
         
       </div>
