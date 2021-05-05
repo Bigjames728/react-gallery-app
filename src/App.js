@@ -23,7 +23,7 @@ export default class App extends Component {
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=sunsets&per_page=24&format=json&nojsoncallback=1`)
       .then(response => {
         this.setState({
-          images: response.data.photos
+          images: response.data.photos.photo
         })
       })
       .catch(error => {
