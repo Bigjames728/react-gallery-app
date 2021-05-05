@@ -40,7 +40,7 @@ export default class App extends Component {
         <SearchForm onSearch={this.searchImages} />
         <MainNav />
         <Results />
-        <ImageList />
+        <ImageList data={this.state.images} />
           
         
       </div>
