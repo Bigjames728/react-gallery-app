@@ -1,5 +1,9 @@
 import React from 'react';
 
-const Image = () => {
-    
-}
+const Image = props => (
+    <li className="photo-container li">
+        <img alt=""/>
+    </li>
+);
+
+export default Image;
