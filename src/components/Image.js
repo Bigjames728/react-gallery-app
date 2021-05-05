@@ -2,11 +2,12 @@ import React from 'react';
 
 const Image = props => {
     const image = props.data;
-    console.log(image)
+    const url = `https://live.staticflickr.com/${image.server}/${image.id}_${image.secret}.jpg`;
+    
     
     return (
         <li>
-            <img src={image.url} alt={image.title} />
+            <img src={url} alt={image.title} />
         </li>
     );
 };
