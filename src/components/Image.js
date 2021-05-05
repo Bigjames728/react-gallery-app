@@ -2,9 +2,10 @@ import React from 'react';
 
 const Image = props => {
     const image = props.data;
+    console.log(image)
     
     return (
-        <li className="photo-container li">
+        <li>
             <img src={image.url} alt={image.title} />
         </li>
     );
