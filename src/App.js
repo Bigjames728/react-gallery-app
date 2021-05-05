@@ -20,7 +20,7 @@ export default class App extends Component {
   
 
   componentDidMount() { 
-    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=sunsets&per_page=24&format=json&nojsoncallback=1`)
+    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=cars&per_page=24&format=json&nojsoncallback=1`)
       .then(response => {
         this.setState({
           images: response.data.photos.photo
@@ -33,11 +33,11 @@ export default class App extends Component {
 
 
   render() {
-    console.log(this.state.images)
+    
     return (
       <div>
         
-        <SearchForm onSearch={this.searchImages} />
+        <SearchForm />
         <MainNav />
         <Results />
         <ImageList data={this.state.images} />
