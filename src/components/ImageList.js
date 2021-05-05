@@ -5,7 +5,7 @@ const ImageList = props => {
 
     const results = props.data;
     console.log(results)
-    let images = results.map((image) =>
+    let images = results.map(image =>
         <Image data={image} key={image.id} />
     );
 
