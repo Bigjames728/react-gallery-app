@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
+import Image from './Image';
 
-export default class ImageList extends Component {
-  
-    render() {  
-        return (
-        
-             
-            
-        );
-    }
+const ImageList = props => {
+
+    return(
+        <ul className="photo-container ul">
+            <Image />
+        </ul>
+    );
 }
+
+export default ImageList;
