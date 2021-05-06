@@ -16,8 +16,8 @@ export default class App extends Component {
       images: [],
       cats: [],
       dogs: [],
-      computer: [],
-      loading: true
+      computers: [],
+      title: ''
     };
   }
 
@@ -44,7 +44,7 @@ export default class App extends Component {
       .catch(error => {
         console.log('Error fetching and parsing data', error);
       });
-    // get 'computer' images and stores them in the computer array
+    // get 'computers' images and stores them in the computer array
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&text=computer&per_page=24&format=json&nojsoncallback=1`)
       .then(response => {
         this.setState({
@@ -79,7 +79,7 @@ export default class App extends Component {
           <SearchForm onSearch={this.performSearch} />
           <MainNav />
           <Results />
-            <Route exact path="/" render ={() => <Redirect to ='/Cats' />} />
+            <Route exact path="/" render ={() => <Redirect to ='/Dogs' />} />
             <Route
                 exact
                 path='/cats'
@@ -113,8 +113,20 @@ export default class App extends Component {
                   />
                 )}
             />
+            <Route
+                exact
+                path='/search/:query'
+                render={() => (
+                  <ImageList 
+                    data={this.state.images}
+                    titel={this.state.title}
+                    loading={this.state.isLoading}
+                    onSearch={this.performSearch}
+                  />
+                )}
+            />
           
-          <ImageList data={this.state.images} />
+          
             
           
         </div>
