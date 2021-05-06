@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 export default class MainNav extends Component {
   
@@ -7,9 +8,15 @@ export default class MainNav extends Component {
         
             <nav className="main-nav">
                 <ul>
-                <li><a href="#">Cats</a></li>
-                <li><a href="#">Dogs</a></li>
-                <li><a href="#">Computers</a></li>
+                    <li>
+                        <Link to="/cats">Cats</Link>
+                    </li>
+                    <li>
+                        <Link to="/dogs">Dogs</Link>
+                    </li>
+                    <li>
+                        <Link to="/computers">Computers</Link>
+                    </li>
                 </ul>
             </nav>  
         );
