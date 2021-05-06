@@ -24,6 +24,7 @@ export default class App extends Component {
   
 
   componentDidMount() { 
+    
     // get 'cats' images and stores them in the cats array
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&text=cats&per_page=24&format=json&nojsoncallback=1`)
       .then(response => {
@@ -87,7 +88,6 @@ export default class App extends Component {
                   <ImageList
                     data={this.state.cats}
                     title='Cats'
-                    loading={this.state.isLoading}
                   />
                 )}
               />
@@ -98,7 +98,6 @@ export default class App extends Component {
                   <ImageList 
                     data={this.state.dogs}
                     titel='Dogs'
-                    loading={this.state.isLoading}
                   />
                 )}
             />
@@ -109,19 +108,16 @@ export default class App extends Component {
                   <ImageList 
                     data={this.state.computers}
                     titel='Computers'
-                    loading={this.state.isLoading}
                   />
                 )}
             />
             <Route
-                exact
                 path='/search/:query'
                 render={() => (
                   <ImageList 
                     data={this.state.images}
                     titel={this.state.title}
-                    loading={this.state.isLoading}
-                    onSearch={this.performSearch}
+                    handleSearch={this.performSearch}
                   />
                 )}
             />
