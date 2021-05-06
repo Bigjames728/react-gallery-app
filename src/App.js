@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import apiKey from './config';
 import './index.css';
+import {Route, BrowserRouter} from 'react-router-dom';
 import axios from 'axios';
 import SearchForm from './components/SearchForm';
 import MainNav from './components/MainNav';
@@ -35,15 +36,17 @@ export default class App extends Component {
   render() {
     
     return (
-      <div>
-        
-        <SearchForm />
-        <MainNav />
-        <Results />
-        <ImageList data={this.state.images} />
+      <BrowserRouter>
+        <div className="container">
           
-        
-      </div>
+          <SearchForm />
+          <MainNav />
+          <Results />
+          <ImageList data={this.state.images} />
+            
+          
+        </div>
+      </BrowserRouter>
     );
   }
 }
