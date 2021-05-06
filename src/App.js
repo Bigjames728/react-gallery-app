@@ -24,6 +24,8 @@ export default class App extends Component {
   
 
   componentDidMount() { 
+
+    this.performSearch();
     
     // get 'cats' images and stores them in the cats array
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&text=cats&per_page=24&format=json&nojsoncallback=1`)
