@@ -48,7 +48,7 @@ export default class App extends Component {
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&text=computer&per_page=24&format=json&nojsoncallback=1`)
       .then(response => {
         this.setState({
-          computer: response.data.photos.photo
+          computers: response.data.photos.photo
         })
       })
       .catch(error => {
@@ -79,6 +79,41 @@ export default class App extends Component {
           <SearchForm onSearch={this.performSearch} />
           <MainNav />
           <Results />
+            <Route exact path="/" render ={() => <Redirect to ='/Cats' />} />
+            <Route
+                exact
+                path='/cats'
+                render={() => (
+                  <ImageList
+                    data={this.state.cats}
+                    title='Cats'
+                    loading={this.state.isLoading}
+                  />
+                )}
+              />
+            <Route
+                exact
+                path='/dogs'
+                render={() => (
+                  <ImageList 
+                    data={this.state.dogs}
+                    titel='Dogs'
+                    loading={this.state.isLoading}
+                  />
+                )}
+            />
+            <Route
+                exact
+                path='/computers'
+                render={() => (
+                  <ImageList 
+                    data={this.state.computers}
+                    titel='Computers'
+                    loading={this.state.isLoading}
+                  />
+                )}
+            />
+          
           <ImageList data={this.state.images} />
             
           
