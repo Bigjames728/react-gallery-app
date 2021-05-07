@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from './Image';
+import NotFound from './NotFound';
 
 const ImageList = props => {
 
@@ -13,7 +14,11 @@ const ImageList = props => {
         <div>
             <h2>{props.title}</h2>
             <ul>
-                {images}
+                {
+                    (images.length > 0)
+                     ? images
+                     : <NotFound />
+                }
             </ul>
         </div>
     );
