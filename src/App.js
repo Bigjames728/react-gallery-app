@@ -5,8 +5,8 @@ import {Route, BrowserRouter, Redirect, Switch} from 'react-router-dom';
 import axios from 'axios';
 import SearchForm from './components/SearchForm';
 import MainNav from './components/MainNav';
-import Results from './components/Results';
 import ImageList from './components/ImageList';
+import NotFound from './components/NotFound';
 
 export default class App extends Component {
 
@@ -81,48 +81,54 @@ export default class App extends Component {
           
           <SearchForm onSearch={this.performSearch} />
           <MainNav />
-          <Results />
-            <Route exact path="/" render ={() => <Redirect to ='/Dogs' />} />
-            <Route
-                exact
-                path='/cats'
-                render={() => (
-                  <ImageList
-                    data={this.state.cats}
-                    title='Cats'
-                  />
-                )}
+          {/* <Results /> */}
+          <div className="photo-container">
+            <Switch>
+              <Route exact path="/" render ={() => <Redirect to ='/Dogs' />} />
+              <Route
+                  exact
+                  path='/cats'
+                  render={() => (
+                    <ImageList
+                      data={this.state.cats}
+                      title='Cats'
+                    />
+                  )}
+                />
+              <Route
+                  exact
+                  path='/dogs'
+                  render={() => (
+                    <ImageList 
+                      data={this.state.dogs}
+                      title='Dogs'
+                    />
+                  )}
               />
-            <Route
-                exact
-                path='/dogs'
-                render={() => (
-                  <ImageList 
-                    data={this.state.dogs}
-                    titel='Dogs'
-                  />
-                )}
-            />
-            <Route
-                exact
-                path='/computers'
-                render={() => (
-                  <ImageList 
-                    data={this.state.computers}
-                    titel='Computers'
-                  />
-                )}
-            />
-            <Route
-                path='/search/:query'
-                render={() => (
-                  <ImageList 
-                    data={this.state.images}
-                    titel={this.state.title}
-                    handleSearch={this.performSearch}
-                  />
-                )}
-            />
+              <Route
+                  exact
+                  path='/computers'
+                  render={() => (
+                    <ImageList 
+                      data={this.state.computers}
+                      title='Computers'
+                    />
+                  )}
+              />
+              <Route
+                  path='/search/:query'
+                  render={() => (
+                    <ImageList 
+                      data={this.state.images}
+                      title={this.state.title}
+                      handleSearch={this.performSearch}
+                    />
+                  )}
+              />
+              <Route 
+                  component={NotFound} />
+            </Switch>
+          </div>
           
           
             
