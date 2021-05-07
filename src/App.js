@@ -32,7 +32,8 @@ export default class App extends Component {
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&text=cats&per_page=24&format=json&nojsoncallback=1`)
       .then(response => {
         this.setState({
-          cats: response.data.photos.photo
+          cats: response.data.photos.photo,
+          loading: false
         })
       })
       .catch(error => {
@@ -42,7 +43,8 @@ export default class App extends Component {
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&text=dogs&per_page=24&format=json&nojsoncallback=1`)
       .then(response => {
         this.setState({
-          dogs: response.data.photos.photo
+          dogs: response.data.photos.photo,
+          loading: false
         })
       })
       .catch(error => {
@@ -52,7 +54,8 @@ export default class App extends Component {
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&text=computer&per_page=24&format=json&nojsoncallback=1`)
       .then(response => {
         this.setState({
-          computers: response.data.photos.photo
+          computers: response.data.photos.photo,
+          loading: false
         })
       })
       .catch(error => {
@@ -62,6 +65,7 @@ export default class App extends Component {
   
 
   performSearch = (query) => {
+    this.setState({ loading: true })
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&text=${query}&per_page=24&format=json&nojsoncallback=1`)
       .then(response => {
         this.setState({
@@ -130,6 +134,7 @@ export default class App extends Component {
                         data={this.state.images}
                         title={this.state.tags}
                         handleSearch={this.performSearch}
+                        loading={this.state.loading}
                       />
                     )}
                 />
