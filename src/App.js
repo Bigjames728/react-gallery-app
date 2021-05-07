@@ -91,56 +91,52 @@ export default class App extends Component {
                ? <p>Loading...</p>
                :
             
-            (<Switch>
-              <Route exact path="/" render ={() => <Redirect to ='/Dogs' />} />
-              <Route
-                  exact
-                  path='/cats'
-                  render={() => (
-                    <ImageList
-                      data={this.state.cats}
-                      title='Cats'
-                    />
-                  )}
+              (<Switch>
+                <Route exact path="/" render ={() => <Redirect to ='/Dogs' />} />
+                <Route
+                    exact
+                    path='/cats'
+                    render={() => (
+                      <ImageList
+                        data={this.state.cats}
+                        title='Cats'
+                      />
+                    )}
+                  />
+                <Route
+                    exact
+                    path='/dogs'
+                    render={() => (
+                      <ImageList 
+                        data={this.state.dogs}
+                        title='Dogs'
+                      />
+                    )}
                 />
-              <Route
-                  exact
-                  path='/dogs'
-                  render={() => (
-                    <ImageList 
-                      data={this.state.dogs}
-                      title='Dogs'
-                    />
-                  )}
-              />
-              <Route
-                  exact
-                  path='/computers'
-                  render={() => (
-                    <ImageList 
-                      data={this.state.computers}
-                      title='Computers'
-                    />
-                  )}
-              />
-              <Route
-                  path='/:query'
-                  render={() => (
-                    <ImageList 
-                      data={this.state.images}
-                      title={this.state.tags}
-                      handleSearch={this.performSearch}
-                    />
-                  )}
-              />
-              <Route component={NotFound} />
-            </Switch>)
+                <Route
+                    exact
+                    path='/computers'
+                    render={() => (
+                      <ImageList 
+                        data={this.state.computers}
+                        title='Computers'
+                      />
+                    )}
+                />
+                <Route
+                    path='/:query'
+                    render={() => (
+                      <ImageList 
+                        data={this.state.images}
+                        title={this.state.tags}
+                        handleSearch={this.performSearch}
+                      />
+                    )}
+                />
+                <Route component={NotFound} />
+              </Switch>)
             }
           </div>
-          
-          
-            
-          
         </div>
       </BrowserRouter>
     );
