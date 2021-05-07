@@ -6,11 +6,12 @@ const ImageList = props => {
     const results = props.data;
 
     let images = results.map(image =>
-        <Image data={image} key={image.id} />
+        <Image data={image} key={image.id} title={image.title} />
     );
 
     return(
-        <div className="photo-container">
+        <div>
+            <h2>{props.title}</h2>
             <ul>
                 {images}
             </ul>
