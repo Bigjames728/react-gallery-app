@@ -17,7 +17,8 @@ export default class App extends Component {
       cats: [],
       dogs: [],
       computers: [],
-      title: ''
+      title: '',
+      loading: true
     };
   }
 
@@ -64,7 +65,9 @@ export default class App extends Component {
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&text=${query}&per_page=24&format=json&nojsoncallback=1`)
       .then(response => {
         this.setState({
-          images: response.data.photos.photo
+          images: response.data.photos.photo,
+          tags: query,
+          loading: false
         })
       })
       .catch(error => {
@@ -81,9 +84,14 @@ export default class App extends Component {
           
           <SearchForm onSearch={this.performSearch} />
           <MainNav />
-          {/* <Results /> */}
+          
           <div className="photo-container">
-            <Switch>
+            {
+              (this.state.loading)
+               ? <p>Loading...</p>
+               :
+            
+            (<Switch>
               <Route exact path="/" render ={() => <Redirect to ='/Dogs' />} />
               <Route
                   exact
@@ -116,18 +124,18 @@ export default class App extends Component {
                   )}
               />
               <Route
-                  path='/search/:query'
+                  path='/:query'
                   render={() => (
                     <ImageList 
                       data={this.state.images}
-                      title={this.state.title}
+                      title={this.state.tags}
                       handleSearch={this.performSearch}
                     />
                   )}
               />
-              <Route 
-                  component={NotFound} />
-            </Switch>
+              <Route component={NotFound} />
+            </Switch>)
+            }
           </div>
           
           
