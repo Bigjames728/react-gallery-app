@@ -7,6 +7,7 @@ import SearchForm from './components/SearchForm';
 import MainNav from './components/MainNav';
 import ImageList from './components/ImageList';
 import NotFound from './components/NotFound';
+import ImageListSearch from './components/ImageListSearch';
 
 export default class App extends Component {
 
@@ -22,12 +23,24 @@ export default class App extends Component {
     };
   }
 
+  performSearch = (query) => {
+    this.setState({ loading: true })
+    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&text=${query}&per_page=24&format=json&nojsoncallback=1`)
+      .then(response => {
+        this.setState({
+          images: response.data.photos.photo,
+          title: query,
+          loading: false
+        })
+      })
+      .catch(error => {
+        console.log('Error fetching and parsing data', error);
+      });
+  }
   
 
   componentDidMount() { 
 
-    this.performSearch();
-    
     // get 'cats' images and stores them in the cats array
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&text=cats&per_page=24&format=json&nojsoncallback=1`)
       .then(response => {
@@ -51,7 +64,7 @@ export default class App extends Component {
         console.log('Error fetching and parsing data', error);
       });
     // get 'computers' images and stores them in the computer array
-    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&text=computer&per_page=24&format=json&nojsoncallback=1`)
+    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&text=computers&per_page=24&format=json&nojsoncallback=1`)
       .then(response => {
         this.setState({
           computers: response.data.photos.photo,
@@ -63,21 +76,6 @@ export default class App extends Component {
       });
   }
   
-
-  performSearch = (query) => {
-    this.setState({ loading: true })
-    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&text=${query}&per_page=24&format=json&nojsoncallback=1`)
-      .then(response => {
-        this.setState({
-          images: response.data.photos.photo,
-          tags: query,
-          loading: false
-        })
-      })
-      .catch(error => {
-        console.log('Error fetching and parsing data', error);
-      });
-  }
 
 
   render() {
@@ -128,11 +126,11 @@ export default class App extends Component {
                     )}
                 />
                 <Route
-                    path='/:query'
+                    path='/search/:query'
                     render={() => (
-                      <ImageList 
+                      <ImageListSearch 
                         data={this.state.images}
-                        title={this.state.tags}
+                        title={this.state.title}
                         handleSearch={this.performSearch}
                         loading={this.state.loading}
                       />
