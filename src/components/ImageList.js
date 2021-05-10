@@ -2,6 +2,9 @@ import React from 'react';
 import Image from './Image';
 import NotFound from './NotFound';
 
+//This component maps the data(image), key and title for each image. It then displays those images in the photo-container div
+//and dynamically adds the search term to the top of the images.
+
 const ImageList = props => {
 
     const results = props.data;
