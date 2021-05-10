@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Image from './Image';
 import NotFound from './NotFound';
 import { withRouter } from 'react-router-dom';
@@ -12,12 +12,13 @@ const ImageListSearch = props => {
     );
 
     let value = props.match.params.query;
-        
+    
+    useEffect(() => {
         if (props.title !== value) {
             props.handleSearch(value);
         }
-        console.log(value);
-        console.log(props.title);
+    });
+
     return(
         <div>
             <h2>{props.title}</h2>
