@@ -23,6 +23,8 @@ export default class App extends Component {
     };
   }
 
+  //Below is my search funciton. This function gets the images from my api and stores them in images: [];
+
   performSearch = (query) => {
     this.setState({ loading: true })
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&text=${query}&per_page=24&format=json&nojsoncallback=1`)
